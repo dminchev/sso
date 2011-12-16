@@ -1,0 +1,28 @@
+.row			
+	.twelve.columns
+		%table{:width => '100%'}
+			%thead
+				%th ID
+				%th Email
+				%th Sign In Count
+				%th Roles
+				%th Refferrer
+				%th Created At
+				%th Updated At
+				%th Actions
+			%tbody
+				- @users.each do |user|
+					%tr
+						%td= user.id
+						%td= user.email
+						%td= user.sign_in_count
+						%td= user.roles
+						%td
+						
+						%td= user.created_at.to_s(:short)
+						%td= user.updated_at.to_s(:short)
+						%td
+							= link_to 'edit', edit_user_path(user)
+							= link_to 'delete', user_path(user), :method => :delete, :confirm => "Are you sure you want to delete the user?"
+		= link_to 'Create user', new_user_path, :class => 'small blue nice button radius'
+		= will_paginate @users

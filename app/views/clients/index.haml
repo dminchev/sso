@@ -1,0 +1,29 @@
+.row			
+	.twelve.columns
+		%table{:width => '100%'}
+			%thead
+				%th ID
+				%th Name
+				%th Website
+				%th Authorization
+				%th Created At
+				%th Updated At
+				%th Actions
+			%tbody
+				- @clients.each do |client|
+					%tr
+						%td= client.id
+						%td= client.name
+						%td= link_to client.website, client.website
+						%td 
+							key: 
+							%b= client.key
+							%br
+							secret: 
+							%b= client.secret
+						%td= client.created_at.to_s(:short)
+						%td= client.updated_at.to_s(:short)
+						%td
+							= link_to 'edit', edit_client_path(client)
+							= link_to 'delete', client_path(client), :method => :delete, :confirm => "Are you sure you want to delete the client?"
+		= link_to 'Create client', new_client_path, :class => 'small blue nice button radius'

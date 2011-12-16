@@ -1,0 +1,28 @@
+!!!
+%html
+	%head
+		%title SSO
+		
+		= csrf_meta_tags
+		= javascript_include_tag "foundation"
+		= javascript_include_tag "application"
+		
+		= stylesheet_link_tag "application"
+	%body
+		.container
+			.row
+				.four.columns.offset-by-eight{:align => 'right'}
+					%ul.menu
+						= render :partial => 'devise/shared/registration_items'
+						= render :partial => 'devise/shared/login_items'
+			- if @title
+				.row
+					.twelve.columns
+						.panel
+							%h2= @title						
+			.row
+				.twelve.columns
+					- flash.each do |key, value|
+						.alert-box{:class => key}
+							= value
+			= yield

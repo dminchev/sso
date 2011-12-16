@@ -1,0 +1,6 @@
+.row			
+	.twelve.columns
+		= semantic_form_for @user do |f|
+			= f.inputs :email, :client
+			= f.input :roles, :as => :check_boxes, :collection => User::ROLES_MASK
+			= f.submit :class => 'small blue nice button radius'
